@@ -3,7 +3,8 @@ Ansible role for installing InBucket https://github.com/inbucket/inbucket
 
 # How to use
 
-The package works without anything needing changing, however you can check `defaults/main.yml` for any of the variables you want to override.
+
+The package works without anything needing changing, however you can check the [Defaults file](https://github.com/carandclassic/inbucket-ansible/blob/main/defaults/main.yml) for any of the variables you want to override.
 You can find information on the full config here: https://www.inbucket.org/configurator/
 
 Add the `carandclassic.inbucket-ansible` role in your playbook
