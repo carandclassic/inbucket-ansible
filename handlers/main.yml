@@ -1,0 +1,5 @@
+---
+- name: reload inbucket
+  ansible.builtin.systemd:
+    name: inbucket
+    state: reloaded
