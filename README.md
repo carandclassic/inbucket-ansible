@@ -3,6 +3,10 @@ Role Name
 
 Ansible role for installing [InBucket](https://github.com/inbucket/inbucket)
 
+Installation
+--------------
+`ansible-galaxy install carandclassic.inbucket`
+
 
 Role Variables
 --------------
