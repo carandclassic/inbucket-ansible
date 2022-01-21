@@ -3,16 +3,6 @@
     path: /usr/local/bin/inbucket
   register: inbucket_stat
 
-- name: Already exists
-  ansible.builtin.debug:
-    msg: exists
-  when: inbucket_stat.stat.exists == true
-
-- name: Doesnt exist
-  ansible.builtin.debug:
-    msg: exists
-  when: inbucket_stat.stat.exists == false
-
 - name: Install Inbucket
   ansible.builtin.include_tasks: install.yml
   when: inbucket_stat.stat.exists == false
@@ -25,7 +15,7 @@
     group: root
     mode: ug=rw,o=r
   notify:
-    reload inbucket
+    restart inbucket
 
 - name: Make sure inbucket is running
   ansible.builtin.systemd:

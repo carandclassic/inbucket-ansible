@@ -1,13 +1,4 @@
-- name: Download Inbucket
-  ansible.builtin.get_url:
-    url: "https://github.com/inbucket/inbucket/releases/download/v{{ inbucket_version }}/inbucket_{{ inbucket_version }}_linux_amd64.deb"
-    dest: /tmp/inbucket.deb
-
 - name: Install Inbucket
-  ansible.builtin.apt: deb="/tmp/inbucket.deb"
-  sudo: true
-
-- name: Remove install binary
-  ansible.builtin.file:
-    path: /tmp/inbucket.deb
-    state: absent
+  ansible.builtin.apt:
+    deb: "https://github.com/inbucket/inbucket/releases/download/v{{ inbucket_version }}/inbucket_{{ inbucket_version }}_linux_amd64.deb"
+  notify: restart inbucket
