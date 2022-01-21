@@ -1,0 +1,15 @@
+inbucket_version: '2.1.0'
+inbucket_loglevel: warn
+inbucket_smtp_addr: '0.0.0.0:2500'
+inbucket_pop3_addr: '0.0.0.0:1100'
+inbucket_web_addr: '0.0.0.0:9000'
+inbucket_web_uidir: /usr/local/share/inbucket/ui
+inbucket_web_greetingfile: /etc/inbucket/greeting.html
+inbucket_storage_type: file
+inbucket_storage_params: 'path:/var/local/inbucket'
+inbucket_smtp_domain: inbucket
+inbucket_smtp_maxrecipients: 200
+inbucket_smtp_maxmessagebytes: 10240000
+inbucket_smtp_defaultaccept: true
+inbucket_pop3_timeout: 600s
+inbucket_web_mailboxprompt: '@inbucket'

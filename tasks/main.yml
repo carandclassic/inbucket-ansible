@@ -1,0 +1,24 @@
+- name: Is Inbucket installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/inbucket
+  register: inbucket_stat
+
+- name: Install Inbucket
+  ansible.builtin.include_tasks: install.yml
+  when: inbucket_stat.stat.exists == false
+
+- name: Apply config
+  ansible.builtin.template:
+    src: inbucket.service
+    dest: /lib/systemd/system/inbucket.service
+    owner: root
+    group: root
+    mode: ug=rw,o=r
+  notify:
+    restart inbucket
+
+- name: Make sure inbucket is running
+  ansible.builtin.systemd:
+    name: inbucket
+    state: started
+    enabled: yes

@@ -1,0 +1,4 @@
+- name: Install Inbucket
+  ansible.builtin.apt:
+    deb: "https://github.com/inbucket/inbucket/releases/download/v{{ inbucket_version }}/inbucket_{{ inbucket_version }}_linux_amd64.deb"
+  notify: restart inbucket

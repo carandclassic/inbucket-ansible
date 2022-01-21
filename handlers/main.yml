@@ -1,0 +1,5 @@
+---
+- name: restart inbucket
+  ansible.builtin.systemd:
+    name: inbucket
+    state: restarted

@@ -1,0 +1,39 @@
+[Unit]
+Description=Inbucket Disposable Email Service
+After=network.target
+
+[Service]
+Type=simple
+User=daemon
+Group=daemon
+PermissionsStartOnly=true
+
+Environment=INBUCKET_LOGLEVEL={{ inbucket_loglevel }}
+Environment=INBUCKET_SMTP_ADDR={{ inbucket_smtp_addr }}
+Environment=INBUCKET_POP3_ADDR={{ inbucket_pop3_addr }}
+Environment=INBUCKET_WEB_ADDR={{ inbucket_web_addr }}
+Environment=INBUCKET_WEB_UIDIR={{ inbucket_web_uidir }}
+Environment=INBUCKET_WEB_GREETINGFILE={{ inbucket_web_greetingfile }}
+Environment=INBUCKET_STORAGE_TYPE={{ inbucket_storage_type }}
+Environment=INBUCKET_STORAGE_PARAMS={{ inbucket_storage_params }}
+Environment=INBUCKET_SMTP_DOMAIN={{ inbucket_smtp_domain }}
+Environment=INBUCKET_SMTP_MAXRECIPIENTS={{ inbucket_smtp_maxrecipients }}
+Environment=INBUCKET_SMTP_MAXMESSAGEBYTES={{ inbucket_smtp_maxmessagebytes }}
+Environment=INBUCKET_SMTP_DEFAULTACCEPT={{ inbucket_smtp_defaultaccept }}
+Environment=INBUCKET_POP3_TIMEOUT={{ inbucket_pop3_timeout }}
+Environment=INBUCKET_WEB_MAILBOXPROMPT={{ inbucket_web_mailboxprompt }}
+
+# Uncomment line below to use low numbered ports
+#ExecStartPre=/sbin/setcap 'cap_net_bind_service=+ep' /usr/local/bin/inbucket
+
+ExecStartPre=/bin/mkdir -p /var/local/inbucket
+ExecStartPre=/bin/chown daemon:daemon /var/local/inbucket
+
+ExecStart=/usr/local/bin/inbucket
+
+# Give SMTP connections time to drain
+TimeoutStopSec=20
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
